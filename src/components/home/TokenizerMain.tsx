@@ -231,7 +231,7 @@ function TokenizerMain({
         let allProcessedTokens: any[] = [];
         try {
             for (const word of wordsToProcess) {
-                const response = await api.post(`/aryabhatta/process_sentence`, {
+                const response = await api.post(`https://api.apratyaksh.org/api/v1/aryabhatta/process_sentence`, {
                     word: word,
                     inputScript: selectedScript,
                 });
