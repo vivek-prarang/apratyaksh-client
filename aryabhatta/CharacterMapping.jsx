@@ -21,7 +21,7 @@ function CharacterMapping({ setCurrentView }) {
         setIsLoading(true);
         setError('');
         try {
-            const response = await api.get(`/aryabhatta/get_mappings`);
+            const response = await api.get(`https://api.apratyaksh.org/api/v1/aryabhatta/get_mappings`);
             const data = response.data;
 
             setConsonantMappings(data.consonants);

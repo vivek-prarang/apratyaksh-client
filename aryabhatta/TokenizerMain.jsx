@@ -141,7 +141,7 @@ function TokenizerMain({
     useEffect(() => {
         const fetchColors = async () => {
             try {
-                const response = await api.get(`/aryabhatta/colors`);
+                const response = await api.get(`https://api.apratyaksh.org/api/v1/aryabhatta/colors`);
                 setCharColors(response.data);
 
             } catch (err) {
