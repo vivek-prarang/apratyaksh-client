@@ -5,14 +5,14 @@ import TokenizerMain from "./TokenizerMain";
 
 const TokenizerParent = () => {
     const [sentence, setSentence] = useState("");
-    const [analysisResults, setAnalysisResults] = useState([]);
-    const [calculationResults, setCalculationResults] = useState(null);
+    const [analysisResults, setAnalysisResults] = useState<any[]>([]);
+    const [calculationResults, setCalculationResults] = useState<any[]>([]);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState("");
     const [showAnalysisResults, setShowAnalysisResults] = useState(false);
     const [showMathRules, setShowMathRules] = useState(false);
     const [showCalculationResults, setShowCalculationResults] = useState(false);
-    const [activeMathRule, setActiveMathRule] = useState(null);
+    const [activeMathRule, setActiveMathRule] = useState<string | null>(null);
 
     const showError = (msg: string) => setError(msg);
 

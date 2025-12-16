@@ -274,7 +274,7 @@ function TokenizerMain({
             return;
         }
 
-        const tokensForCalculation = analysisResults.map((wordObj) => Number(Object.values(wordObj)[0].value));
+        const tokensForCalculation = analysisResults.map((wordObj) => Number((Object.values(wordObj)[0] as any).value));
 
         try {
             const response = await api.post(`/aryabhatta/calculate`, {
@@ -373,7 +373,6 @@ function TokenizerMain({
                 {/* Header */}
                 <div className=" px-6 py-2 text-center">
                     <h1 className="text-xl sm:text-2xl  font-semibold  text-gray-700">
-                        Script to Number (Based on Varṇamālā)
                         Varṇamālā: Unity of Language (Script), Maths (Numbers), Coloues (Varna) and Music (Ragha)
                     </h1>
 
@@ -515,7 +514,7 @@ function TokenizerMain({
                                         <th className="bg-gray-300 text-black text-left border border-gray-400 px-4 py-2 w-1/4 font-semibold">
                                             Śabda
                                         </th>
-                                        {analysisResults.map((wordObj, index) => (
+                                        {analysisResults.map((wordObj: any, index) => (
                                             <th
                                                 key={index}
                                                 className="bg-gray-200 text-black text-left border border-gray-400 px-4 py-2 font-semibold"
@@ -530,13 +529,13 @@ function TokenizerMain({
                                         <th className="bg-gray-300 text-black text-left border border-gray-400 px-4 py-2 align-top font-semibold">
                                             Viślēṣaṇa
                                         </th>
-                                        {analysisResults.map((wordObj, index) => (
+                                        {analysisResults.map((wordObj: any, index) => (
                                             <td key={index} className="text-left border border-gray-400 px-4 py-2">
                                                 <table className="w-full text-center text-xs sm:text-sm border-collapse border border-gray-300 mt-1">
                                                     <thead>
                                                         <tr>
                                                             <th className="border border-gray-300 px-2 py-1 font-semibold">Vibhājana</th>
-                                                            {Object.values(wordObj)[0].letters_breakdown.map((segment: any, segIndex: number) => (
+                                                            {(Object.values(wordObj)[0] as any).letters_breakdown.map((segment: any, segIndex: number) => (
                                                                 <th key={segIndex} className="border border-gray-300 px-2 py-1">
                                                                     {segment.char}
                                                                     {segment.type === "consonant" && (
@@ -560,7 +559,7 @@ function TokenizerMain({
                                                     <tbody>
                                                         <tr>
                                                             <td className="border border-gray-300 px-2 py-1 font-semibold">Varṇāṅka</td>
-                                                            {Object.values(wordObj)[0].letters_breakdown.map((segment: any, segIndex: number) => {
+                                                            {(Object.values(wordObj)[0] as any).letters_breakdown.map((segment: any, segIndex: number) => {
                                                                 const displayChar =
                                                                     segment.char ||
                                                                     segment.vowel ||
@@ -594,7 +593,7 @@ function TokenizerMain({
 
                                                         <tr>
                                                             <td className="border border-gray-300 px-2 py-1 font-semibold">Varṇa</td>
-                                                            {Object.values(wordObj)[0].letters_breakdown.map((segment: any, segIndex: number) => {
+                                                            {(Object.values(wordObj)[0] as any).letters_breakdown.map((segment: any, segIndex: number) => {
                                                                 const vowelImplicit =
                                                                     selectedScript === "latin" ? "a" : selectedScript === "devanagari" ? "अ" : "ಅ";
                                                                 const colorKey =
@@ -616,7 +615,7 @@ function TokenizerMain({
                                                             <td className="flex justify-center items-center px-2 py-1">
                                                                 <Image src="/malefemaleunion.png" alt="Union" width={24} height={24} />
                                                             </td>
-                                                            {Object.values(wordObj)[0].letters_breakdown.map((segment: any, segIndex: number) => {
+                                                            {(Object.values(wordObj)[0] as any).letters_breakdown.map((segment: any, segIndex: number) => {
                                                                 let unionValue = "";
                                                                 if (segment.type === "vowel_for_consonant" || segment.type === "implicit_vowel") {
                                                                     const val =
@@ -635,7 +634,7 @@ function TokenizerMain({
 
                                                         <tr>
                                                             <td className="border border-gray-300 px-2 py-1 font-semibold">Akṣara Varṇa</td>
-                                                            {Object.values(wordObj)[0].letters_breakdown.map(
+                                                            {(Object.values(wordObj)[0] as any).letters_breakdown.map(
                                                                 (segment: any, segIndex: number, arr: any[]) => {
                                                                     if (!(segment.type === "vowel_for_consonant" || segment.type === "implicit_vowel")) {
                                                                         return <td key={segIndex} className="border border-gray-300 px-2 py-1"></td>;
@@ -680,7 +679,7 @@ function TokenizerMain({
                                         </th>
                                         {analysisResults.map((wordObj, index) => (
                                             <td key={index} className="text-left border border-gray-400 px-4 py-2 font-semibold text-gray-800">
-                                                {Object.values(wordObj)[0].letters_breakdown.length}
+                                                {(Object.values(wordObj)[0] as any).letters_breakdown.length}
                                             </td>
                                         ))}
                                     </tr>
@@ -690,10 +689,10 @@ function TokenizerMain({
                                             Saṅkhyā
                                         </th>
                                         {analysisResults.map((wordObj, index) => {
-                                            const val = Object.values(wordObj)[0].value;
+                                            const val = (Object.values(wordObj)[0] as any).value;
 
                                             const unionColors: string[] = [];
-                                            Object.values(wordObj)[0].letters_breakdown.forEach((seg: any) => {
+                                            (Object.values(wordObj)[0] as any).letters_breakdown.forEach((seg: any) => {
                                                 if (seg._blendedColors) seg._blendedColors.forEach((c: string) => unionColors.push(c));
                                             });
 
@@ -725,7 +724,7 @@ function TokenizerMain({
                                             {(() => {
                                                 const allColors: string[] = [];
                                                 analysisResults.forEach((wordObj) => {
-                                                    Object.values(wordObj)[0].letters_breakdown.forEach((seg: any) => {
+                                                    (Object.values(wordObj)[0] as any).letters_breakdown.forEach((seg: any) => {
                                                         if (seg._blendedColors) seg._blendedColors.forEach((c: string) => allColors.push(c));
                                                     });
                                                 });
@@ -753,7 +752,7 @@ function TokenizerMain({
                                         <th className="bg-gray-300 text-black text-left border border-gray-400 px-4 py-2 font-semibold">
                                             Śabda
                                         </th>
-                                        {analysisResults.map((wordObj, index) => (
+                                        {analysisResults.map((wordObj: any, index) => (
                                             <th
                                                 key={index}
                                                 className="bg-gray-200 text-black text-left border border-gray-400 px-4 py-2 font-semibold"
