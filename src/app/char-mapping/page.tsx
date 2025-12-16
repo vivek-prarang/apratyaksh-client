@@ -49,15 +49,15 @@ function CharacterMapping() {
     const avargaConsonants = consonantMappings.filter((c: any) => c.number > 25).sort((a: any, b: any) => a.number - b.number);
 
     const renderHorizontalTable = (title: string, data: any[], headers: string[], keyMapper: (prop: string, item: any) => { value: any; class?: string }) => (
-        <div className="mb-6 p-3 border rounded-lg bg-gray-50 dark:bg-gray-800">
-            <h2 className="text-lg sm:text-xl font-semibold mb-3 text-center text-gray-900 dark:text-white">{title}</h2>
+        <div className="mb-6 p-3 border rounded-lg bg-gray-50 ">
+            <h2 className="text-lg sm:text-xl font-semibold mb-3 text-center text-gray-900 ">{title}</h2>
             <div className="overflow-x-auto">
-                <table className="min-w-full table-fixed border border-gray-400 dark:border-gray-600">
+                <table className="min-w-full table-fixed border border-gray-400 ">
                     <tbody>
                         {headers.map((prop) => (
                             <tr key={prop}>
                                 <td
-                                    className="py-1 px-2 border-b border-r border-gray-300 dark:border-gray-600 text-right align-middle text-gray-900 dark:text-white"
+                                    className="py-1 px-2 border-b border-r border-gray-300  text-right align-middle text-gray-900 "
                                     style={{ width: "fit-content", whiteSpace: "nowrap" }}
                                 >
                                     {prop}
@@ -66,7 +66,7 @@ function CharacterMapping() {
                                     <td
                                         key={colIdx}
                                         className={
-                                            "py-1 px-2 border-b border-r border-gray-300 dark:border-gray-600 text-center text-gray-900 dark:text-white" +
+                                            "py-1 px-2 border-b border-r border-gray-300  text-center text-gray-900 " +
                                             (keyMapper(prop, item).class || '')
                                         }
                                         style={{ width: `${100 / (data.length || 1)}%` }}
@@ -83,11 +83,11 @@ function CharacterMapping() {
     );
 
     return (
-        <div className="bg-white dark:bg-gray-900 p-2 sm:p-4 md:p-6 rounded-lg shadow-lg w-full max-w-full mx-auto relative font-sans min-h-screen">
-            <h1 className="text-xl sm:text-2xl font-bold text-black dark:text-white mb-3 sm:mb-4 text-center">Akṣara-Saṅkhyā Sambandhaḥ</h1>
+        <div className="bg-white  p-2 sm:p-4 md:p-6 rounded-lg shadow-lg w-full max-w-full mx-auto relative font-sans min-h-screen">
+            <h1 className="text-xl sm:text-2xl font-bold text-black  mb-3 sm:mb-4 text-center">Akṣara-Saṅkhyā Sambandhaḥ</h1>
 
             {isLoading && (
-                <div className="text-center text-gray-600 dark:text-gray-400 font-medium mb-2 h-4 text-sm">
+                <div className="text-center text-gray-600  font-medium mb-2 h-4 text-sm">
                     Loading mappings...
                 </div>
             )}
@@ -102,14 +102,14 @@ function CharacterMapping() {
             {!isLoading && !error && (
                 <>
                     {/* Varga Consonants */}
-                    <div className="mb-6 p-3 border rounded-lg bg-gray-50 dark:bg-gray-800">
-                        <h2 className="text-lg sm:text-xl font-semibold mb-3 text-center text-gray-900 dark:text-white">Vargīya Vyañjanāni</h2>
+                    <div className="mb-6 p-3 border rounded-lg bg-gray-50 ">
+                        <h2 className="text-lg sm:text-xl font-semibold mb-3 text-center text-gray-900 ">Vargīya Vyañjanāni</h2>
                         <div className="overflow-x-auto">
-                            <table className="min-w-full table-fixed border border-gray-400 dark:border-gray-600">
-                                <thead className="bg-gray-200 dark:bg-gray-700 sticky top-0 z-10">
+                            <table className="min-w-full table-fixed border border-gray-400 ">
+                                <thead className="bg-gray-200  sticky top-0 z-10">
                                     <tr>
                                         {['क-वर्ग', 'च-वर्ग', 'ट-वर्ग', 'त-वर्ग', 'प-वर्ग'].map((varga, idx) => (
-                                            <th key={idx} colSpan={5} className="py-1 px-1 sm:px-2 border-b border-r border-gray-300 dark:border-gray-600 text-center text-xs sm:text-sm text-gray-900 dark:text-white">
+                                            <th key={idx} colSpan={5} className="py-1 px-1 sm:px-2 border-b border-r border-gray-300  text-center text-xs sm:text-sm text-gray-900 ">
                                                 {varga}
                                             </th>
                                         ))}
@@ -117,11 +117,11 @@ function CharacterMapping() {
                                     <tr>
                                         {[...Array(5)].flatMap(() => (
                                             [
-                                                <th key="num" className="py-1 px-1 border-b border-r border-gray-300 dark:border-gray-600 text-center text-xs sm:text-xs text-gray-900 dark:text-white">No.</th>,
-                                                <th key="dev" className="py-1 px-1 border-b border-r border-gray-300 dark:border-gray-600 text-center text-xs sm:text-xs text-gray-900 dark:text-white">Devanagari</th>,
-                                                <th key="lat" className="py-1 px-1 border-b border-r border-gray-300 dark:border-gray-600 text-center text-xs sm:text-xs text-gray-900 dark:text-white">Latin</th>,
-                                                <th key="kan" className="py-1 px-1 border-b border-r border-gray-300 dark:border-gray-600 text-center text-xs sm:text-xs text-gray-900 dark:text-white">Kannada</th>,
-                                                <th key="tel" className="py-1 px-1 border-b border-r border-gray-300 dark:border-gray-600 text-center text-xs sm:text-xs text-gray-900 dark:text-white">Telugu</th>
+                                                <th key="num" className="py-1 px-1 border-b border-r border-gray-300  text-center text-xs sm:text-xs text-gray-900 ">No.</th>,
+                                                <th key="dev" className="py-1 px-1 border-b border-r border-gray-300  text-center text-xs sm:text-xs text-gray-900 ">Devanagari</th>,
+                                                <th key="lat" className="py-1 px-1 border-b border-r border-gray-300  text-center text-xs sm:text-xs text-gray-900 ">Latin</th>,
+                                                <th key="kan" className="py-1 px-1 border-b border-r border-gray-300  text-center text-xs sm:text-xs text-gray-900 ">Kannada</th>,
+                                                <th key="tel" className="py-1 px-1 border-b border-r border-gray-300  text-center text-xs sm:text-xs text-gray-900 ">Telugu</th>
                                             ]
                                         ))}
                                     </tr>
@@ -132,11 +132,11 @@ function CharacterMapping() {
                                             {[0, 1, 2, 3, 4].flatMap(colIdx => {
                                                 const c: any = vargaConsonantsGridData[rowIdx][colIdx];
                                                 return [
-                                                    <td key={`num-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300 dark:border-gray-600 text-center text-xs text-blue-700 dark:text-blue-400 font-bold">{c.number}</td>,
-                                                    <td key={`dev-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300 dark:border-gray-600 text-center text-base text-gray-900 dark:text-white">{c.devanagariChar || '—'}</td>,
-                                                    <td key={`lat-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300 dark:border-gray-600 text-center text-xs text-gray-900 dark:text-white">{c.latinChar || '—'}</td>,
-                                                    <td key={`kan-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300 dark:border-gray-600 text-center text-base text-gray-900 dark:text-white">{c.kannadaChar || '—'}</td>,
-                                                    <td key={`tel-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300 dark:border-gray-600 text-center text-base text-gray-900 dark:text-white">{c.teluguChar || '—'}</td>
+                                                    <td key={`num-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300  text-center text-xs text-blue-700  font-bold">{c.number}</td>,
+                                                    <td key={`dev-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300  text-center text-base text-gray-900 ">{c.devanagariChar || '—'}</td>,
+                                                    <td key={`lat-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300  text-center text-xs text-gray-900 ">{c.latinChar || '—'}</td>,
+                                                    <td key={`kan-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300  text-center text-base text-gray-900 ">{c.kannadaChar || '—'}</td>,
+                                                    <td key={`tel-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300  text-center text-base text-gray-900 ">{c.teluguChar || '—'}</td>
                                                 ];
                                             })}
                                         </tr>
@@ -154,7 +154,7 @@ function CharacterMapping() {
                         (prop, item) => {
                             switch (prop) {
                                 case "Number":
-                                    return { value: item.number, class: " text-xs text-blue-700 dark:text-blue-400 font-bold" };
+                                    return { value: item.number, class: " text-xs text-blue-700  font-bold" };
                                 case "Devanagari":
                                     return { value: item.devanagariChar, class: " text-base" };
                                 case "Latin":
@@ -177,7 +177,7 @@ function CharacterMapping() {
                         (prop, item) => {
                             switch (prop) {
                                 case "Number":
-                                    return { value: item.number, class: " text-xs text-blue-700 dark:text-blue-400 font-bold" };
+                                    return { value: item.number, class: " text-xs text-blue-700  font-bold" };
                                 case "Devanagari":
                                     return { value: item.devanagariChar, class: " text-base" };
                                 case "Latin":

@@ -277,7 +277,7 @@ function TokenizerMain({
         const tokensForCalculation = analysisResults.map((wordObj) => Number((Object.values(wordObj)[0] as any).value));
 
         try {
-            const response = await api.post(`/aryabhatta/calculate`, {
+            const response = await api.post(`https://api.apratyaksh.org/api/v1/aryabhatta/calculate`, {
                 tokens: tokensForCalculation,
                 operation: operationType,
             });
@@ -369,11 +369,11 @@ function TokenizerMain({
 
     return (
         <div className="w-full">
-            <div className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+            <div className="bg-white  rounded-xl shadow-2xl border border-gray-200  overflow-hidden">
                 {/* Header */}
                 <div className=" px-6 py-2 text-center">
                     <h1 className="text-xl sm:text-2xl  font-semibold  text-gray-700">
-                        Varṇamālā: Unity of Language (Script), Maths (Numbers), Coloues (Varna) and Music (Ragha)
+                        Varṇamālā: Unity of Language (Script), Maths (Numbers), Colours (Varna) and Music (Raga)
                     </h1>
 
                 </div>
@@ -382,8 +382,8 @@ function TokenizerMain({
                 <div className="p-6 sm:p-8 space-y-6">
 
                     {/* Input Section */}
-                    <div className="bg-white dark:bg-gray-900 p-6 rounded-lg border border-gray-200 dark:border-gray-700">
-                        <label htmlFor="sentenceInput" className="block text-gray-900 dark:text-white text-sm sm:text-base mb-3 font-semibold">
+                    <div className="bg-white  p-6 rounded-lg border border-gray-200 ">
+                        <label htmlFor="sentenceInput" className="block text-gray-900  text-sm sm:text-base mb-3 font-semibold">
                             Select Input Script:
                         </label>
                         <div className="flex flex-wrap items-center gap-x-6 gap-y-2 mb-4">
@@ -476,7 +476,7 @@ function TokenizerMain({
                     <div className="flex justify-center">
                         <button
                             id="convertCharToNumBtn"
-                            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-lg w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+                            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-8 rounded-xl focus:outline-none focus:ring-4 focus:ring-blue-300 transition-all duration-300 ease-in-out shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-lg w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
                             onClick={handleConvertCharToNum}
                             disabled={isLoading}
                         >

@@ -18,14 +18,14 @@ const HomeHeader = () => {
 
                 {/* Text Section */}
                 <div className="flex flex-col space-y-2 text-center md:text-left flex-1 md:pl-8">
-                    <h2 className="text-xl md:text-xl font-medium text-blue-600 dark:text-blue-400 tracking-wide">
+                    <h2 className="text-xl md:text-xl font-medium text-blue-600  tracking-wide">
                         Not So Apparent Knowledge...
                     </h2>
                     <div className="flex flex-col justify-center md:justify-start items-center">
                     <h1 className="text-2xl md:text-3xl font-bold text-blue-700">
                         SANSKRIT: NATURAL INTELLIGENCE
                     </h1>
-                    <p className="text-lg md:text-xl font-medium italic text-blue-600 dark:text-green-400 ">
+                    <p className="text-lg md:text-xl font-medium italic text-blue-600  ">
                         Phonetical - Neither Spiritual, Nor Scriptual
                     </p>
                     </div>

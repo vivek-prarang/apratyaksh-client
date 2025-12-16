@@ -169,14 +169,14 @@ export const faqItems = [
             </div>)
     },
     {
-        title: "Lation to Devanagari Converter",
+        title: "Latin Script Converter",
         content: (
             <div className="space-y-4">
 
                 <div className="flex flex-wrap items-center justify-center space-x-4">
                     <button className="  text-black hover:text-white font-bold py-2 px-4 rounded">
                         <a
-                            href="https://www.lexilogos.com/keyboard/devanagari.html"
+                            href="https://www.lexilogos.com/keyboard/devanagari.htm"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -200,7 +200,7 @@ export const faqItems = [
                             target="_blank"
                             rel="noopener noreferrer"
                         >
-                            Telugu Converter
+                             Telugu Converter
                          </a>
                     </button>
                 </div>

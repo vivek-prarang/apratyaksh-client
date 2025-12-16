@@ -49,7 +49,7 @@ export default function ScaleMapper() {
 
         try {
             const response = await api.post(
-                `/aryabhatta/closest_character`,
+                `https://api.apratyaksh.org/api/v1/aryabhatta/closest_character`,
                 payload
             );
 
@@ -89,33 +89,33 @@ export default function ScaleMapper() {
     };
 
     return (
-        <div className="flex flex-col lg:flex-row p-6 gap-8 bg-gray-50 dark:bg-gray-900 min-h-screen">
+        <div className="flex flex-col lg:flex-row p-6 gap-8 bg-gray-50  min-h-screen">
             <div className="w-full lg:w-1/2">
-                <h1 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">Scale Mapper</h1>
+                <h1 className="text-xl font-bold mb-4 text-gray-900 ">Scale Mapper</h1>
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <input
                         type="number"
                         placeholder="R (0-255)"
                         value={r}
                         onChange={(e) => handleRgbChange(e.target.value, g, b)}
-                        className="border border-gray-300 dark:border-gray-600 p-2 rounded w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                        className="border border-gray-300  p-2 rounded w-full bg-white  text-gray-900 "
                     />
                     <input
                         type="number"
                         placeholder="G (0-255)"
                         value={g}
                         onChange={(e) => handleRgbChange(r, e.target.value, b)}
-                        className="border border-gray-300 dark:border-gray-600 p-2 rounded w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                        className="border border-gray-300  p-2 rounded w-full bg-white  text-gray-900 "
                     />
                     <input
                         type="number"
                         placeholder="B (0-255)"
                         value={b}
                         onChange={(e) => handleRgbChange(r, g, e.target.value)}
-                        className="border border-gray-300 dark:border-gray-600 p-2 rounded w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                        className="border border-gray-300  p-2 rounded w-full bg-white  text-gray-900 "
                     />
 
-                    <div className="text-center text-gray-600 dark:text-gray-400 font-semibold">— OR —</div>
+                    <div className="text-center text-gray-600  font-semibold">— OR —</div>
 
                     <div className="flex items-center space-x-2">
                         <input
@@ -123,13 +123,13 @@ export default function ScaleMapper() {
                             placeholder="#RRGGBB"
                             value={hex}
                             onChange={(e) => handleHexChange(e.target.value)}
-                            className="border border-gray-300 dark:border-gray-600 p-2 rounded w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-white"
+                            className="border border-gray-300  p-2 rounded w-full bg-white  text-gray-900 "
                         />
                         <input
                             type="color"
                             value={hex}
                             onChange={(e) => handleHexChange(e.target.value)}
-                            className="w-12 h-12 cursor-pointer border border-gray-300 dark:border-gray-600 rounded"
+                            className="w-12 h-12 cursor-pointer border border-gray-300  rounded"
                         />
                     </div>
 
@@ -139,7 +139,7 @@ export default function ScaleMapper() {
                 </form>
 
                 {result && (
-                    <p className="mt-4 text-lg text-gray-900 dark:text-white">
+                    <p className="mt-4 text-lg text-gray-900 ">
                         <span className="font-semibold">{result}</span>
                     </p>
                 )}
@@ -171,7 +171,7 @@ function ColorMappingTable() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        api.get(`/aryabhatta/color_mappings`)
+        api.get(`https://api.apratyaksh.org/api/v1/aryabhatta/color_mappings`)
             .then((res) => {
                 console.log("Full response:", res);
                 console.log("Response data:", res.data);
@@ -195,7 +195,7 @@ function ColorMappingTable() {
     }, []);
 
     if (loading) {
-        return <div className="text-center p-4 text-gray-900 dark:text-white">Loading color mappings...</div>;
+        return <div className="text-center p-4 text-gray-900 ">Loading color mappings...</div>;
     }
 
     if (error) {
@@ -204,39 +204,39 @@ function ColorMappingTable() {
 
     return (
         <div>
-            <h2 className="text-lg font-bold mb-2 text-gray-900 dark:text-white">Colour Mapping</h2>
-            <div className="overflow-y-scroll max-h-[600px] border border-gray-300 dark:border-gray-600 rounded bg-white dark:bg-gray-800">
+            <h2 className="text-lg font-bold mb-2 text-gray-900 ">Colour Mapping</h2>
+            <div className="overflow-y-scroll max-h-[600px] border border-gray-300  rounded bg-white ">
                 <table className="w-full text-sm">
-                    <thead className="bg-gray-200 dark:bg-gray-700 sticky top-0">
+                    <thead className="bg-gray-200  sticky top-0">
                         <tr>
-                            <th className="p-2 text-gray-900 dark:text-white">Varnamala Character</th>
-                            <th className="p-2 text-gray-900 dark:text-white">Hex</th>
-                            <th className="p-2 text-gray-900 dark:text-white">RGB</th>
-                            <th className="p-2 text-gray-900 dark:text-white">Varna Shade</th>
-                            <th className="p-2 text-gray-900 dark:text-white">Sthāna</th>
-                            <th className="p-2 text-gray-900 dark:text-white">Preview</th>
+                            <th className="p-2 text-gray-900 ">Varnamala Character</th>
+                            <th className="p-2 text-gray-900 ">Hex</th>
+                            <th className="p-2 text-gray-900 ">RGB</th>
+                            <th className="p-2 text-gray-900 ">Varna Shade</th>
+                            <th className="p-2 text-gray-900 ">Sthāna</th>
+                            <th className="p-2 text-gray-900 ">Preview</th>
                         </tr>
                     </thead>
                     <tbody>
                         {rows.length === 0 ? (
                             <tr>
-                                <td colSpan={6} className="text-center p-4 text-gray-900 dark:text-white">
+                                <td colSpan={6} className="text-center p-4 text-gray-900 ">
                                     No color mappings available
                                 </td>
                             </tr>
                         ) : (
                             rows.map((row) => (
-                                <tr key={row.id} className="border-t border-gray-300 dark:border-gray-600">
-                                    <td className="p-2 text-gray-900 dark:text-white">{row.devanagari_char || "—"}</td>
-                                    <td className="p-2 text-gray-900 dark:text-white">{row.color_hex || "—"}</td>
-                                    <td className="p-2 text-gray-900 dark:text-white">
+                                <tr key={row.id} className="border-t border-gray-300 ">
+                                    <td className="p-2 text-gray-900 ">{row.devanagari_char || "—"}</td>
+                                    <td className="p-2 text-gray-900 ">{row.color_hex || "—"}</td>
+                                    <td className="p-2 text-gray-900 ">
                                         ({row.color_r || 0}, {row.color_g || 0}, {row.color_b || 0})
                                     </td>
-                                    <td className="p-2 text-gray-900 dark:text-white">{row.colour_shade || "—"}</td>
-                                    <td className="p-2 text-gray-900 dark:text-white">{row.sthana || "—"}</td>
+                                    <td className="p-2 text-gray-900 ">{row.colour_shade || "—"}</td>
+                                    <td className="p-2 text-gray-900 ">{row.sthana || "—"}</td>
                                     <td className="p-2">
                                         <div
-                                            className="w-6 h-6 rounded border border-gray-300 dark:border-gray-600"
+                                            className="w-6 h-6 rounded border border-gray-300 "
                                             style={{ backgroundColor: row.color_hex || "#000000" }}
                                         />
                                     </td>
