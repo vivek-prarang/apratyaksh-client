@@ -27,20 +27,20 @@ const FAQModal = ({ faqItem, isOpen, onClose }: FAQModalProps) => {
             ></div>
 
             {/* Modal */}
-            <div className="relative bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto z-10">
-                <h3 className="text-2xl font-bold text-gray-800 dark:text-white border-b-2 border-blue-200 dark:border-blue-700 pb-2 mb-4">
+            <div className="relative bg-white  p-6 rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto z-10">
+                <h3 className="text-2xl font-bold text-gray-800  border-b-2 border-blue-200  pb-2 mb-4">
                     {faqItem.title}
                 </h3>
 
                 {faqItem.type === "calculator" ? (
                     <div className="space-y-6">
                         {/* Placeholder for calculator images */}
-                        <div className="bg-gray-100 dark:bg-gray-700 rounded-xl p-8 text-center">
-                            <p className="text-gray-600 dark:text-gray-300">Calculator images will be displayed here</p>
+                        <div className="bg-gray-100  rounded-xl p-8 text-center">
+                            <p className="text-gray-600 ">Calculator images will be displayed here</p>
                         </div>
                     </div>
                 ) : (
-                    <div className="prose prose-blue max-w-none text-gray-700 dark:text-gray-300 [&_a]:text-blue-600 [&_a:hover]:text-blue-700 dark:[&_a]:text-blue-400 dark:[&_a:hover]:text-blue-300">
+                    <div className="prose prose-blue max-w-none text-gray-700  [&_a]:text-blue-600 [&_a:hover]:text-blue-700  ">
                         {faqItem.content}
                     </div>
                 )}
