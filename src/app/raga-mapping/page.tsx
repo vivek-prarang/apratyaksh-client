@@ -11,7 +11,7 @@ export default function Ragas() {
     const [copiedColor, setCopiedColor] = useState<string | null>(null);
 
     useEffect(() => {
-        api.get(`/melakarta/melakarta-ragas`)
+        api.get(`https://api.apratyaksh.org/api/v1/melakarta/melakarta-ragas`)
             .then((res) => {
                 setRagas(res.data);
                 setLoading(false);
