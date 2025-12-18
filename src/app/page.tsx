@@ -26,15 +26,24 @@ export default function Home() {
 
             {/* FAQ Section */}
             <FAQSection />
-
-    <div className="space-x-4">
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        <Link href="/char-mapping">Character Mapping</Link>
-      </button>
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        <Link href="/scale-mapping">Scale Mapping</Link>
-      </button>
-    </div>
+            {/* Tools Buttons */}
+            <div className="flex flex-row flex-wrap gap-2 mt-6 lg:mt-0">
+              <Link href="/char-mapping" className="flex-1">
+                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-2 text-sm rounded-lg shadow-md transition-colors duration-200 whitespace-nowrap">
+                  Character Mapping
+                </button>
+              </Link>
+              <Link href="/scale-mapping" className="flex-1">
+                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-2 text-sm rounded-lg shadow-md transition-colors duration-200 whitespace-nowrap">
+                  Scale Mapping
+                </button>
+              </Link>
+              <Link href="/raga-mapping" className="flex-1">
+                <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-2 text-sm rounded-lg shadow-md transition-colors duration-200 whitespace-nowrap">
+                  Raga Mapping
+                </button>
+              </Link>
+            </div>
 
           </div>
         </div>
