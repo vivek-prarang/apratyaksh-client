@@ -16,7 +16,7 @@ function CharacterMapping() {
         setIsLoading(true);
         setError('');
         try {
-            const response = await api.get(`https://api.apratyaksh.org/api/v1/aryabhatta/get_mappings`);
+            const response = await api.get(`/api/v1/aryabhatta/get_mappings`);
             const data = response.data;
 
             setConsonantMappings(data.consonants);
@@ -109,7 +109,7 @@ function CharacterMapping() {
                                 <thead className="bg-gray-200  sticky top-0 z-10">
                                     <tr>
                                         {['क-वर्ग', 'च-वर्ग', 'ट-वर्ग', 'त-वर्ग', 'प-वर्ग'].map((varga, idx) => (
-                                            <th key={idx} colSpan={5} className="py-1 px-1 sm:px-2 border-b border-r border-gray-300  text-center text-xs sm:text-sm text-gray-900 ">
+                                            <th key={idx} colSpan={6} className="py-1 px-1 sm:px-2 border-b border-r border-gray-300  text-center text-xs sm:text-sm text-gray-900 ">
                                                 {varga}
                                             </th>
                                         ))}
@@ -121,7 +121,8 @@ function CharacterMapping() {
                                                 <th key="dev" className="py-1 px-1 border-b border-r border-gray-300  text-center text-xs sm:text-xs text-gray-900 ">Devanagari</th>,
                                                 <th key="lat" className="py-1 px-1 border-b border-r border-gray-300  text-center text-xs sm:text-xs text-gray-900 ">Latin</th>,
                                                 <th key="kan" className="py-1 px-1 border-b border-r border-gray-300  text-center text-xs sm:text-xs text-gray-900 ">Kannada</th>,
-                                                <th key="tel" className="py-1 px-1 border-b border-r border-gray-300  text-center text-xs sm:text-xs text-gray-900 ">Telugu</th>
+                                                <th key="tel" className="py-1 px-1 border-b border-r border-gray-300  text-center text-xs sm:text-xs text-gray-900 ">Telugu</th>,
+                                                <th key="mal" className="py-1 px-1 border-b border-r border-gray-300  text-center text-xs sm:text-xs text-gray-900 ">Malayalam</th>
                                             ]
                                         ))}
                                     </tr>
@@ -136,7 +137,8 @@ function CharacterMapping() {
                                                     <td key={`dev-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300  text-center text-base text-gray-900 ">{c.devanagariChar || '—'}</td>,
                                                     <td key={`lat-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300  text-center text-xs text-gray-900 ">{c.latinChar || '—'}</td>,
                                                     <td key={`kan-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300  text-center text-base text-gray-900 ">{c.kannadaChar || '—'}</td>,
-                                                    <td key={`tel-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300  text-center text-base text-gray-900 ">{c.teluguChar || '—'}</td>
+                                                    <td key={`tel-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300  text-center text-base text-gray-900 ">{c.teluguChar || '—'}</td>,
+                                                    <td key={`mal-${colIdx}`} className="py-1 px-1 border-b border-r border-gray-300  text-center text-base text-gray-900 ">{c.malayalamChar || '—'}</td>
                                                 ];
                                             })}
                                         </tr>
@@ -150,7 +152,7 @@ function CharacterMapping() {
                     {renderHorizontalTable(
                         "Avargīya Vyañjanāni",
                         avargaConsonants,
-                        ["Number", "Devanagari", "Latin", "Kannada", "Telugu"],
+                        ["Number", "Devanagari", "Latin", "Kannada", "Telugu", "Malayalam"],
                         (prop, item) => {
                             switch (prop) {
                                 case "Number":
@@ -163,6 +165,8 @@ function CharacterMapping() {
                                     return { value: item.kannadaChar, class: " text-base" };
                                 case "Telugu":
                                     return { value: item.teluguChar, class: " text-base" };
+                                case "Malayalam":
+                                    return { value: item.malayalamChar, class: " text-base" };
                                 default:
                                     return { value: '—' };
                             }
@@ -173,7 +177,7 @@ function CharacterMapping() {
                     {renderHorizontalTable(
                         "Vowel Multipliers",
                         vowelMappings,
-                        ["Number", "Devanagari", "Latin", "Kannada", "Telugu"],
+                        ["Number", "Devanagari", "Latin", "Kannada", "Telugu", "Malayalam"],
                         (prop, item) => {
                             switch (prop) {
                                 case "Number":
@@ -186,6 +190,8 @@ function CharacterMapping() {
                                     return { value: item.kannadaChar, class: " text-base" };
                                 case "Telugu":
                                     return { value: item.teluguChar, class: " text-base" };
+                                case "Malayalam":
+                                    return { value: item.malayalamChar, class: " text-base" };
                                 default:
                                     return { value: '—' };
                             }
@@ -196,7 +202,7 @@ function CharacterMapping() {
                     {renderHorizontalTable(
                         "Matra Mappings",
                         devanagariMatraMappings,
-                        ["Devanagari Matra", "Latin Equivalent Vowel", "Kannada", "Telugu"],
+                        ["Devanagari Matra", "Latin Equivalent Vowel", "Kannada", "Telugu", "Malayalam"],
                         (prop, item) => {
                             switch (prop) {
                                 case "Devanagari Matra":
@@ -207,6 +213,8 @@ function CharacterMapping() {
                                     return { value: item.kannadaChar, class: " text-base" };
                                 case "Telugu":
                                     return { value: item.teluguChar, class: " text-base" };
+                                case "Malayalam":
+                                    return { value: item.malayalamChar, class: " text-base" };
                                 default:
                                     return { value: '—' };
                             }
@@ -217,7 +225,7 @@ function CharacterMapping() {
                     {renderHorizontalTable(
                         "Modifier Mappings",
                         devanagariModifierMappings,
-                        ["Devanagari Modifier", "Latin Equivalent", "Kannada", "Telugu"],
+                        ["Devanagari Modifier", "Latin Equivalent", "Kannada", "Telugu", "Malayalam"],
                         (prop, item) => {
                             switch (prop) {
                                 case "Devanagari Modifier":
@@ -228,6 +236,8 @@ function CharacterMapping() {
                                     return { value: item.kannadaChar, class: " text-base" };
                                 case "Telugu":
                                     return { value: item.teluguChar, class: " text-base" };
+                                case "Malayalam":
+                                    return { value: item.malayalamChar, class: " text-base" };
                                 default:
                                     return { value: '—' };
                             }

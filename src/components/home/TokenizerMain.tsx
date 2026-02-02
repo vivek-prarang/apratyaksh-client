@@ -131,6 +131,10 @@ function TokenizerMain({
     activeMathRule,
     setActiveMathRule,
 }: TokenizerMainProps) {
+    // Always start with default values to avoid hydration mismatch
+    // const [selectedScript, setSelectedScript] = useState("latin");
+    // const [inputType, setInputType] = useState("word");
+
     const [selectedScript, setSelectedScript] = useState(
         typeof window !== "undefined" ? localStorage.getItem("selectedScript") || "latin" : "latin"
     );
@@ -142,10 +146,19 @@ function TokenizerMain({
     // Ref for auto-scroll to results
     const resultsRef = useRef<HTMLDivElement>(null);
 
+    // Load from localStorage after component mounts (client-side only)
+    // useEffect(() => {
+    //     const savedScript = localStorage.getItem("selectedScript");
+    //     const savedInputType = localStorage.getItem("inputType");
+        
+    //     if (savedScript) setSelectedScript(savedScript);
+    //     if (savedInputType) setInputType(savedInputType);
+    // }, []);
+
     useEffect(() => {
         const fetchColors = async () => {
             try {
-                const response = await api.get(`https://api.apratyaksh.org/api/v1/aryabhatta/colors`);
+                const response = await api.get(`/api/v1/aryabhatta/colors`);
                 setCharColors(response.data);
             } catch (err) {
                 console.error("Error fetching colors:", err);
@@ -231,7 +244,7 @@ function TokenizerMain({
         let allProcessedTokens: any[] = [];
         try {
             for (const word of wordsToProcess) {
-                const response = await api.post(`https://api.apratyaksh.org/api/v1/aryabhatta/process_sentence`, {
+                const response = await api.post(`/api/v1/aryabhatta/process_sentence`, {
                     word: word,
                     inputScript: selectedScript,
                 });
@@ -277,7 +290,7 @@ function TokenizerMain({
         const tokensForCalculation = analysisResults.map((wordObj) => Number((Object.values(wordObj)[0] as any).value));
 
         try {
-            const response = await api.post(`https://api.apratyaksh.org/api/v1/aryabhatta/calculate`, {
+            const response = await api.post(`/api/v1/aryabhatta/calculate`, {
                 tokens: tokensForCalculation,
                 operation: operationType,
             });
@@ -348,6 +361,8 @@ function TokenizerMain({
                     return "ನಿಮ್ಮ ಕನ್ನಡ ಪದವನ್ನು ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ...";
                 case "telugu":
                     return "మీ తెలుగు పదాన్ని ఇక్కడ టైప్ చేయండి...";
+                case "malayalam":
+                    return "നിങ്ങളുടെ മലയാളം പദം ഇവിടെ ടൈപ്പ് ചെയ്യുക...";
                 default:
                     return "Type your word here...";
             }
@@ -361,6 +376,8 @@ function TokenizerMain({
                     return "ನಿಮ್ಮ ಕನ್ನಡ ವಾಕ್ಯವನ್ನು ಇಲ್ಲಿ ಟೈಪ್ ಮಾಡಿ...";
                 case "telugu":
                     return "మీ తెలుగు వాక్యాన్ని ఇక్కడ టైప్ చేయండి...";
+                case "malayalam":
+                    return "നിങ്ങളുടെ മലയാളം വാക്യം ഇവിടെ ടൈപ്പ് ചെയ്യുക...";
                 default:
                     return "Type your sentence here...";
             }
@@ -430,6 +447,17 @@ function TokenizerMain({
                                     onChange={() => setSelectedScript("telugu")}
                                 />
                                 <span className="ml-2 text-black text-sm sm:text-base">Telugu Script</span>
+                            </label>
+                            <label className="inline-flex items-center">
+                                <input
+                                    type="radio"
+                                    className="form-radio h-4 w-4 text-black"
+                                    name="inputScript"
+                                    value="malayalam"
+                                    checked={selectedScript === "malayalam"}
+                                    onChange={() => setSelectedScript("malayalam")}
+                                />
+                                <span className="ml-2 text-black text-sm sm:text-base">Malayalam Script</span>
                             </label>
                         </div>
 
@@ -568,7 +596,13 @@ function TokenizerMain({
                                                                             ? "a"
                                                                             : selectedScript === "devanagari"
                                                                                 ? "अ"
-                                                                                : "ಅ"
+                                                                                : selectedScript === "kannada"
+                                                                                    ? "ಅ"
+                                                                                    : selectedScript === "telugu"
+                                                                                        ? "అ"
+                                                                                        : selectedScript === "malayalam"
+                                                                                            ? "അ"
+                                                                                            : ""
                                                                         : "");
                                                                 return (
                                                                     <td key={segIndex} className="border border-gray-300 px-2 py-1">
@@ -595,7 +629,7 @@ function TokenizerMain({
                                                             <td className="border border-gray-300 px-2 py-1 font-semibold">Varṇa</td>
                                                             {(Object.values(wordObj)[0] as any).letters_breakdown.map((segment: any, segIndex: number) => {
                                                                 const vowelImplicit =
-                                                                    selectedScript === "latin" ? "a" : selectedScript === "devanagari" ? "अ" : "ಅ";
+                                                                    selectedScript === "latin" ? "a" : selectedScript === "devanagari" ? "अ" : selectedScript === "kannada" ? "ಅ" : selectedScript === "telugu" ? "అ" : selectedScript === "malayalam" ? "അ" : "a";
                                                                 const colorKey =
                                                                     segment.type === "consonant"
                                                                         ? segment.char || ""
@@ -646,7 +680,7 @@ function TokenizerMain({
                                                                     const consonantKey =
                                                                         (prev && prev.type === "consonant" && prev.char) || segment.consonant || "";
                                                                     const vowelImplicit =
-                                                                        selectedScript === "latin" ? "a" : selectedScript === "devanagari" ? "अ" : "ಅ";
+                                                                        selectedScript === "latin" ? "a" : selectedScript === "devanagari" ? "अ" : selectedScript === "kannada" ? "ಅ" : selectedScript === "telugu" ? "అ" : selectedScript === "malayalam" ? "അ" : "a";
                                                                     const vowelKey =
                                                                         segment.type === "implicit_vowel"
                                                                             ? vowelImplicit

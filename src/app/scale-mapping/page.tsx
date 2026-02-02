@@ -49,7 +49,7 @@ export default function ScaleMapper() {
 
         try {
             const response = await api.post(
-                `https://api.apratyaksh.org/api/v1/aryabhatta/closest_character`,
+                `/api/v1/aryabhatta/closest_character`,
                 payload
             );
 
@@ -171,7 +171,7 @@ function ColorMappingTable() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        api.get(`https://api.apratyaksh.org/api/v1/aryabhatta/color_mappings`)
+        api.get(`/api/v1/aryabhatta/color_mappings`)
             .then((res) => {
                 console.log("Full response:", res);
                 console.log("Response data:", res.data);
