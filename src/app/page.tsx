@@ -43,6 +43,12 @@ export default function Home() {
                   Raga Mapping
                 </button>
               </Link>
+              
+              <Link href="/vedic-calculator" className="flex-1">
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-2 text-sm rounded-lg shadow-md transition-colors duration-200 whitespace-nowrap">
+                    Vedic Calculator
+                  </button>
+              </Link>
             </div>
 
           </div>
