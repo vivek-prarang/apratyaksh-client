@@ -27,7 +27,7 @@ interface ExpressionResponse {
 const isOperator = (value: string) => ["+", "-", "*", "/", "÷"].includes(value);
 
 const normalizeExpressionInput = (value: string) =>
-  value.replaceAll("x", "*").replaceAll("X", "*").replaceAll("÷", "/");
+  value.replaceAll("x", "x").replaceAll("X", "x").replaceAll("÷", "÷");
 
 export default function VedicCalculatorPage() {
   const [expression, setExpression] = useState("");
@@ -95,6 +95,7 @@ export default function VedicCalculatorPage() {
         expression: trimmed,
       });
       setResult(response.data);
+      console.log("Calculation result:", response.data);
     } catch (err: unknown) {
       const detail =
         typeof err === "object" &&
@@ -182,8 +183,8 @@ export default function VedicCalculatorPage() {
           
 
               <h1 className="text-3xl font-bold text-slate-900 md:text-3xl text-center" style={{ textShadow: "rgb(255, 255, 255) 1px 1px 0px, rgb(170, 170, 170) 2px 2px 0px !important", textDecoration: "underline" }}>
-  Vedic Calculator
-</h1>
+                Vedic Calculator
+              </h1>
           <section className="mt-6 grid gap-6 lg:grid-cols-[430px,1fr]">
             <div className="space-y-3">
               <div className="rounded-2xl border border-slate-200 bg-slate-100 p-4 shadow-inner">
